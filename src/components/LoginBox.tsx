@@ -9,7 +9,6 @@ import { useAtom }                          from "jotai"
 import { useCallback, useEffect, useState } from "react"
 import { userAtom }                         from "../state/atoms"
 
-
 const LoginBox = () => {
   const [ user, setUser ] = useAtom( userAtom )
 
@@ -19,9 +18,11 @@ const LoginBox = () => {
   const [ isOpen, setIsOpen ]     = useState( false )
 
   const handleButtonClick = useCallback( () => setIsOpen( !isOpen ),
-                                         [] )
+                                         [],
+  )
   const handleClose       = useCallback( () => setIsOpen( false ),
-                                         [] )
+                                         [],
+  )
 
   const onSubmit: ( event ) => Promise<void> = async event => {
     event.preventDefault()
@@ -49,7 +50,10 @@ const LoginBox = () => {
 
   return (
     <>
-      <Button onClick={ handleButtonClick } text="Sign in"/>
+      <Button
+        onClick={ handleButtonClick }
+        text="Sign in"
+        className="bp4-minimal"/>
       <Dialog isOpen={ isOpen } onClose={ handleClose }>
         <DialogBody>
           <form

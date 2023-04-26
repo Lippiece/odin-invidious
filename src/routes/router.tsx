@@ -4,26 +4,28 @@ import {
   Route,
 } from "react-router-dom"
 
-import App           from "../App"
-import Home          from "./Home"
-import Profile       from "./Profile"
+import App            from "../App"
+import homepageLoader from "../logic/homepageLoader"
+import Home           from "./Home"
+import Profile        from "./Profile"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
-      path="/odin-waldo/"
+      path="/"
       element={ <App/> }
     >
       <Route
-        path="/odin-waldo/"
+        loader={ homepageLoader }
+        path="/"
         element={ <Home/> }
       />
       <Route
-        path="/odin-waldo/profile"
+        path="/profile"
         element={ <Profile/> }
       />
-    </Route>
-  )
+    </Route>,
+  ),
 )
 
 export default router
