@@ -1,0 +1,17 @@
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 4 | @import "@blueprintjs/core/lib/scss/variables.scss";
+ *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   App.scss 4:9  root stylesheet */
+
+body::before {
+  font-family   : "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+  "Droid Sans Mono", monospace, monospace;
+  display       : block;
+  margin-bottom : 1em;
+  padding       : 1em;
+  content       : "Error: Can't find stylesheet to import.\a   \2577 \a 4 \2502  @import \"@blueprintjs/core/lib/scss/variables.scss\";\d\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   App.scss 4:9  root stylesheet";
+  white-space   : pre;
+  border-bottom : 2px solid black;
+}

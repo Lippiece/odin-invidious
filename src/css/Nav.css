@@ -1,0 +1,22 @@
+.nav {
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  margin          : 1rem;
+  gap             : 1em;
+}
+
+.nav > ul {
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  margin          : 0;
+  padding         : 0 1rem;
+  list-style      : none;
+
+  gap             : 1em;
+}
+
+a {
+  text-decoration : none;
+}
