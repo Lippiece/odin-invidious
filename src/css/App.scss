@@ -20,7 +20,10 @@ main {
   display          : flex;
   flex-direction   : column;
   flex-grow        : 1;
-  justify-content  : space-evenly;
 
   background-image : url("../pattern/darkExa.webp");
+
+  * {
+    margin : 0 2rem;
+  }
 }

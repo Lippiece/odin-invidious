@@ -1,36 +1,6 @@
+import ReactPlayer       from "react-player/youtube"
 import { useLoaderData } from "react-router-dom"
-
-interface Video {
-  "type": "video", // Constant
-
-  "title": String,
-  "videoId": String,
-
-  "author": String,
-  "authorId": String,
-  "authorUrl": String,
-  "authorVerified": Boolean,
-
-  "videoThumbnails": [
-    // One or more ThumbnailObject
-  ],
-
-  "description": String,
-  "descriptionHtml": String,
-
-  "viewCount": Number, // Integer
-  "lengthSeconds": Number, // Integer
-
-  "published": Number, // Unix timestamp
-  "publishedText": String,
-
-  // Only available on premiered videos
-  "premiereTimestamp": Number, // Unix timestamp
-
-  "liveNow": Boolean,
-  "premium": Boolean,
-  "isUpcoming": Boolean
-}
+import { Video }         from "../@types/types"
 
 const Home = () => {
   const loaderData = useLoaderData() as Video[]
@@ -38,11 +8,16 @@ const Home = () => {
     <>
       <h1>Popular videos</h1>
       <ul>
-        { loaderData?.map( video => (
-          <li key={ video.videoId }>
-            <h1>{ video.title }</h1>
-          </li>
-        ) ) }
+        { loaderData?.length > 0
+          ? loaderData.map( ( { videoId } ) => (
+            <li key={ videoId }>
+              <ReactPlayer
+                url={ `https://youtube.com/watch?v=${ videoId }` }
+                controls
+              />
+            </li>
+          ) )
+          : <p>No videos loaded. It is a bug.</p> }
       </ul>
     </>
   )

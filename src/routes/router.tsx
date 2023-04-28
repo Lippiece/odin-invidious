@@ -4,10 +4,9 @@ import {
   Route,
 } from "react-router-dom"
 
-import App            from "../App"
-import homepageLoader from "../logic/homepageLoader"
-import Home           from "./Home"
-import Profile        from "./Profile"
+import App     from "../App"
+import Home    from "./Home"
+import Profile from "./Profile"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,7 +15,7 @@ const router = createBrowserRouter(
       element={ <App/> }
     >
       <Route
-        loader={ homepageLoader }
+        loader={ () => fetch( `https://invidious.baczek.me/api/v1/popular` ) }
         path="/"
         element={ <Home/> }
       />

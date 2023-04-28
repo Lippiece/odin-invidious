@@ -1,11 +1,12 @@
 import { Button, Navbar } from "@blueprintjs/core"
 import { Link }           from "react-router-dom"
 import "../css/Nav.css"
-import UserBox            from "./UserBox"
+
+import UserBox from "./UserBox"
 
 const Nav = () => {
   return (
-    <Navbar class="nav">
+    <Navbar className="nav">
       <Navbar.Group>
         <Link to="/">
           <Navbar.Heading>Logo</Navbar.Heading>
