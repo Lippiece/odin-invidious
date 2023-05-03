@@ -1,5 +1,6 @@
 import {
   Button,
+  Classes,
   Dialog,
   DialogBody,
   InputGroup,
@@ -53,7 +54,7 @@ const LoginBox = () => {
       <Button
         onClick={ handleButtonClick }
         text="Sign in"
-        className="bp4-minimal"/>
+        className={ Classes.MINIMAL }/>
       <Dialog isOpen={ isOpen } onClose={ handleClose }>
         <DialogBody>
           <form

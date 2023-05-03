@@ -1,5 +1,5 @@
-import { Button, Navbar } from "@blueprintjs/core"
-import { Link }           from "react-router-dom"
+import { Button, Classes, Navbar } from "@blueprintjs/core"
+import { Link }                    from "react-router-dom"
 import "../css/Nav.css"
 
 import UserBox from "./UserBox"
@@ -14,10 +14,12 @@ const Nav = () => {
       </Navbar.Group>
       <Navbar.Group>
         <Link to="/app">
-          <Button text="Play" large className="bp4-minimal"/>
+          <Button
+            text="Play" large className={ Classes.MINIMAL }/>
         </Link>
         <Link to="/profile">
-          <Button text="Profile" large className="bp4-minimal"/>
+          <Button
+            text="Profile" large className={ Classes.MINIMAL }/>
         </Link>
         <Navbar.Divider/>
       </Navbar.Group>
