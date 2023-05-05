@@ -6,6 +6,7 @@ import {
 
 import App     from "../App"
 import Home    from "./Home"
+import Main    from "./Main"
 import Profile from "./Profile"
 
 const router = createBrowserRouter(
@@ -22,6 +23,10 @@ const router = createBrowserRouter(
       <Route
         path="/profile"
         element={ <Profile/> }
+      />
+      <Route
+        path="/main"
+        element={ <Main/> }
       />
     </Route>,
   ),
