@@ -12,20 +12,20 @@ import Profile from "./Profile"
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
-      path="/"
+      path="/odin-invidious/"
       element={ <App/> }
     >
       <Route
         loader={ () => fetch( `https://invidious.baczek.me/api/v1/popular` ) }
-        path="/"
+        path="/odin-invidious/"
         element={ <Home/> }
       />
       <Route
-        path="/profile"
+        path="/odin-invidious/profile"
         element={ <Profile/> }
       />
       <Route
-        path="/main"
+        path="/odin-invidious/main"
         element={ <Main/> }
       />
     </Route>,

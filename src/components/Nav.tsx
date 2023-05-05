@@ -9,17 +9,17 @@ const Nav = () => {
   return (
     <Navbar className="nav">
       <Navbar.Group>
-        <Link to="/">
-          <Navbar.Heading>Logo</Navbar.Heading>
+        <Link to="/odin-invidious/">
+          <Navbar.Heading>Logos</Navbar.Heading>
         </Link>
         <Search/>
       </Navbar.Group>
       <Navbar.Group>
-        <Link to="/main">
+        <Link to="/odin-invidious/main">
           <Button
             text="Main" large className={ Classes.MINIMAL }/>
         </Link>
-        <Link to="/profile">
+        <Link to="/odin-invidious/profile">
           <Button
             text="Profile" large className={ Classes.MINIMAL }/>
         </Link>
