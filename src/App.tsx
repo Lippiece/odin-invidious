@@ -1,6 +1,7 @@
 // eslint-disable sort-keys-fix/sort-keys-fix
+import { Suspense } from "react"
 // import * as dotenv from 'dotenv'
-import { Outlet } from "react-router-dom"
+import { Outlet }   from "react-router-dom"
 
 import Footer from "./components/Footer"
 import Nav    from "./components/Nav"
@@ -19,7 +20,9 @@ const App = () => {
   return ( <>
       <Nav/>
       <main>
-        <Outlet/>
+        <Suspense fallback={ <div>Loading...</div> }>
+          <Outlet/>
+        </Suspense>
       </main>
       <Footer/>
     </>
