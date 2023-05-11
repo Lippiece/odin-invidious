@@ -8,7 +8,7 @@ import addCommentForVideo                    from "../logic/addCommentsForVideo"
 import getComments                           from "../logic/getComments"
 import handleError                           from "../logic/handleError"
 import prettifyTimestamp                     from "../logic/prettifyTimestamp"
-import { errorAtom }                         from "../state/atoms"
+import { errorAtom, userAtom }               from "../state/atoms"
 
 const VideoPage = () => {
   const separators = useLocation().pathname.split( "/" )
@@ -16,6 +16,7 @@ const VideoPage = () => {
   const videoId  = separators[ separators.length - 1 ]
   const Comments = () => {
     const [ , setError ] = useAtom( errorAtom )
+    const [ user ]       = useAtom( userAtom )
 
     useEffect( () => {
       fetchComments()
@@ -28,7 +29,7 @@ const VideoPage = () => {
     }
 
     const handleAddComment = () => {
-      const newComment = { "lippiece": [ message, Date.now() ] }
+      const newComment = { [ user || "Anonymous" ]: [ message, Date.now() ] }
       addCommentForVideo( videoId, newComment )
         .then( fetchComments )
         .catch( error => handleError( error )( setError ) )

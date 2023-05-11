@@ -33,6 +33,7 @@ const App            = () => {
     && addToast( {
                    intent : Intent.DANGER,
                    message: `Error: ${ error?.message }`,
+                   icon   : "error",
                  } )
   }, [ error ] )
 

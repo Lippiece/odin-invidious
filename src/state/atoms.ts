@@ -2,7 +2,7 @@ import { atom }  from "jotai"
 import { Video } from "../@types/types"
 
 const storageUser     = localStorage.getItem( "user" )
-export const userAtom = atom( storageUser || "" )
+export const userAtom = atom( storageUser )
 
 const storageSearchResults       = localStorage.getItem( "searchResults" )
 const storageSearchResultsParsed = storageSearchResults

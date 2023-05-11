@@ -8,10 +8,13 @@ import {
 }                                           from "@blueprintjs/core"
 import { useAtom }                          from "jotai"
 import { useCallback, useEffect, useState } from "react"
+import handleError                          from "../logic/handleError"
+import signIn                               from "../logic/signIn"
 import { userAtom }                         from "../state/atoms"
 
 const LoginBox = () => {
   const [ user, setUser ] = useAtom( userAtom )
+  const [ , setError ]    = useState<string | null>( null )
 
   const [ username, setUsername ] = useState( "" )
   const [ password, setPassword ] = useState( "" )
@@ -25,18 +28,18 @@ const LoginBox = () => {
                                          [],
   )
 
-  const onSubmit: ( event ) => Promise<void> = async event => {
+  const onSubmit = async event => {
     event.preventDefault()
     setStatus( "Signing in" )
     const result = await signIn( username, password )
     if ( result?.message ) {
-      return setStatus( result.message )
+      return handleError( result )( setError )
     }
-    setStatus( "Writing credentials" )
+    setStatus( "Remembering credentials" )
     setUser( result )
     setStatus( "Signed in" )
   }
-  const onInput: ( event ) => void           = event => {
+  const onInput  = event => {
     event.target.type === "password"
     ? setPassword( event.currentTarget.value )
     : setUsername( event.currentTarget.value )
