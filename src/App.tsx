@@ -1,11 +1,12 @@
-// eslint-disable sort-keys-fix/sort-keys-fix
-import '@noshot/env'
-import { initializeApp } from "firebase/app"
-import { Suspense }      from "react"
-import { Outlet }        from "react-router-dom"
-import Footer            from "./components/Footer"
-import Nav               from "./components/Nav"
+import { Intent, Toaster, ToastProps } from "@blueprintjs/core"
+import { initializeApp }               from "firebase/app"
+import { useAtom }                     from "jotai"
+import { Suspense, useEffect, useRef } from "react"
+import { Outlet }                      from "react-router-dom"
+import Footer                          from "./components/Footer"
+import Nav                             from "./components/Nav"
 import "./css/App.scss"
+import { errorAtom }                   from "./state/atoms"
 
 const firebaseConfig = {
 // @ts-ignore
@@ -19,6 +20,22 @@ const firebaseConfig = {
 // @ts-ignore
 window.firebaseApp   = initializeApp( firebaseConfig )
 const App            = () => {
+  const [ error ] = useAtom( errorAtom )
+
+  const toasterReference = useRef<Toaster>( null )
+  const addToast         = ( toast: ToastProps ) => {
+    toast.timeout = 5000
+    toasterReference.current?.show( toast )
+  }
+
+  useEffect( () => {
+    error
+    && addToast( {
+                   intent : Intent.DANGER,
+                   message: `Error: ${ error?.message }`,
+                 } )
+  }, [ error ] )
+
   return ( <>
       <Nav/>
       <main>
@@ -27,6 +44,7 @@ const App            = () => {
         </Suspense>
       </main>
       <Footer/>
+      <Toaster ref={ toasterReference }/>
     </>
   )
 }

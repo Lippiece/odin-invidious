@@ -34,3 +34,9 @@ export interface Video {
   "premium": boolean,
   "isUpcoming": boolean
 }
+
+export type Comments = {
+  [ videoId: string ]: {
+    [ commenter: string ]: [ string, number ]
+  }
+}

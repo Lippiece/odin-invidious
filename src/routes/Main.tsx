@@ -1,20 +1,21 @@
 import { NonIdealState } from "@blueprintjs/core"
 import { useAtom }       from "jotai"
-import ReactPlayer       from "react-player/youtube"
+import { Suspense }      from "react"
+import { Link, Outlet }  from "react-router-dom"
 import { searchAtom }    from "../state/atoms"
 
 const Main = () => {
   const [ searchResults ] = useAtom( searchAtom )
   return ( <>
+      <Suspense fallback={ <div>Loading...</div> }>
+        <Outlet/>
+      </Suspense>
       { searchResults?.length > 0
         ? (
           <ul>
-            { searchResults.map( ( { id } ) => (
+            { searchResults.map( ( { id, title } ) => (
               <li key={ id }>
-                <ReactPlayer
-                  url={ `https://youtube.com/watch?v=${ id }` }
-                  controls
-                />
+                <Link to={ id }>{ title }</Link>
               </li>
             ) ) }
           </ul>

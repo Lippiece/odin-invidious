@@ -1,10 +1,14 @@
-import { Classes, Icon, Intent, Toaster, ToastProps }  from "@blueprintjs/core"
+import { Classes, Icon }                               from "@blueprintjs/core"
 import { ContentTypes, fetchInstances, searchContent } from "@invidjs/invid-js"
 import { useAtom }                                     from "jotai"
-import { useRef, useState }                            from "react"
-import { searchAtom }                                  from "../state/atoms"
+import { useState }                                    from "react"
+import handleError
+                                                       from "../logic/handleError"
+import { errorAtom, searchAtom }                       from "../state/atoms"
 
 const Search = () => {
+  const [ , setError ] = useAtom( errorAtom )
+
   const [ query, setQuery ]    = useState( "" )
   const [ , setSearchResults ] = useAtom( searchAtom )
 
@@ -21,19 +25,9 @@ const Search = () => {
       setSearchResults( response )
       return response
     } catch ( error ) {
-      console.error( error )
-      addToast( {
-                  intent : Intent.DANGER,
-                  message: `Error: ${ error.message }`,
-                } )
+      handleError( error )( setError )
       return []
     }
-  }
-
-  const toaster  = useRef<Toaster>( null )
-  const addToast = ( toast: ToastProps ) => {
-    toast.timeout = 5000
-    toaster.current?.show( toast )
   }
 
   return (
@@ -52,9 +46,6 @@ const Search = () => {
         >
         </input>
       </div>
-      <Toaster
-        ref={ toaster }
-      />
     </>
   )
 }

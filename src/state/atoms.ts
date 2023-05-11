@@ -10,3 +10,5 @@ const storageSearchResultsParsed = storageSearchResults
                                    : []
 export const searchAtom          = atom<Video[]>(
   storageSearchResultsParsed )
+
+export const errorAtom = atom<Error>( null )
