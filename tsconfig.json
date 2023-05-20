@@ -1,28 +1,26 @@
 {
-  "exclude": [
-    "node_modules",
-    "**/node_modules/*"
-  ],
-  "include": [
-    "src/**/*"
-  ],
-  "compilerOptions": {
-    "alwaysStrict": true,
-    "jsx": "react-jsx",
-    "watch": true,
-    "target": "ESNext",
-    "strictFunctionTypes": true,
-    "strict": true,
-    "module": "ESNext",
-    "pretty": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "moduleResolution": "Node",
-    "moduleDetection": "auto",
-    "noImplicitAny": true,
-    "incremental": true,
-    "allowSyntheticDefaultImports": true
-  }
+  "exclude":          [
+    "node_modules", "**/node_modules/*"
+  ], "include":       [
+  "src/**/*"
+], "compilerOptions": {
+  "types":                        [ "vitest/globals" ],
+  "alwaysStrict":                 true,
+  "jsx":                          "react-jsx",
+  "watch":                        true,
+  "target":                       "ESNext",
+  "strictFunctionTypes":          true,
+  "strict":                       true,
+  "module":                       "ESNext",
+  "pretty":                       true,
+  "noUnusedParameters":           true,
+  "noUnusedLocals":               true,
+  "noImplicitReturns":            true,
+  "noImplicitThis":               true,
+  "moduleResolution":             "Node",
+  "moduleDetection":              "auto",
+  "noImplicitAny":                true,
+  "incremental":                  true,
+  "allowSyntheticDefaultImports": true
+}
 }

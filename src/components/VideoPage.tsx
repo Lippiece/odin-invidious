@@ -13,7 +13,7 @@ import { errorAtom, userAtom }               from "../state/atoms"
 const VideoPage = () => {
   const separators = useLocation().pathname.split( "/" )
 
-  const videoId  = separators[ separators.length - 1 ]
+  const videoId = separators[ separators.length - 1 ]
   const Comments = () => {
     const [ , setError ] = useAtom( errorAtom )
     const [ user ]       = useAtom( userAtom )
@@ -29,7 +29,11 @@ const VideoPage = () => {
     }
 
     const handleAddComment = () => {
-      const newComment = { [ user || "Anonymous" ]: [ message, Date.now() ] }
+      const newComment = {
+        [ user.name || "Anonymous" ]: [ message,
+                                        Date.now(),
+        ],
+      }
       addCommentForVideo( videoId, newComment )
         .then( fetchComments )
         .catch( error => handleError( error )( setError ) )

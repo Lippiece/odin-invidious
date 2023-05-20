@@ -5,6 +5,7 @@ import {
   DialogBody,
   InputGroup,
   Label,
+  Tag,
 }                                           from "@blueprintjs/core"
 import { useAtom }                          from "jotai"
 import { useCallback, useEffect, useState } from "react"
@@ -18,7 +19,10 @@ const LoginBox = () => {
 
   const [ username, setUsername ] = useState( "" )
   const [ password, setPassword ] = useState( "" )
-  const [ status, setStatus ]     = useState( "" )
+  const [ status, setStatus ]     = useState( {
+                                                text    : "",
+                                                password: "",
+                                              } )
   const [ isOpen, setIsOpen ]     = useState( false )
 
   const handleButtonClick = useCallback( () => setIsOpen( !isOpen ),
@@ -36,7 +40,7 @@ const LoginBox = () => {
       return handleError( result )( setError )
     }
     setStatus( "Remembering credentials" )
-    setUser( result )
+    setUser( { name: result } )
     setStatus( "Signed in" )
   }
   const onInput  = event => {
@@ -44,8 +48,16 @@ const LoginBox = () => {
     ? setPassword( event.currentTarget.value )
     : setUsername( event.currentTarget.value )
     event.target.checkValidity()
-    ? setStatus( "" )
-    : setStatus( event.target.validationMessage )
+    ? setStatus(
+      {
+        ...status,
+        [ event.target.type ]: null,
+      },
+    )
+    : setStatus( {
+                   ...status,
+                   [ event.target.type ]: event.target.validationMessage,
+                 } )
   }
 
   useEffect( () => {
@@ -57,13 +69,13 @@ const LoginBox = () => {
       <Button
         onClick={ handleButtonClick }
         text="Sign in"
-        className={ Classes.MINIMAL }/>
+      />
       <Dialog isOpen={ isOpen } onClose={ handleClose }>
         <DialogBody>
           <form
             onSubmit={ onSubmit }
+            className={ Classes.FORM_GROUP }
           >
-            <p>{ status }</p>
             <Label htmlFor="mailInput">E-Mail</Label>
             <InputGroup
               id="mailInput"
@@ -73,6 +85,8 @@ const LoginBox = () => {
               required
               placeholder="mail@domain.com"
             />
+            { status.text &&
+              <Tag intent="warning">{ status.text }</Tag> }
             <Label htmlFor="passwordInput">Password</Label>
             <InputGroup
               id="passwordInput"
@@ -81,6 +95,8 @@ const LoginBox = () => {
               minLength={ 6 }
               required
             />
+            { status.password &&
+              <Tag intent="warning">{ status.password }</Tag> }
             <Button type="submit">Login</Button>
           </form>
         </DialogBody>

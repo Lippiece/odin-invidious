@@ -34,5 +34,6 @@ export default defineConfig( {
                                  environment: "jsdom",
                                  globals    : true,
                                  update     : true,
+                                 reporters  : [ 'html' ],
                                },
                              } )

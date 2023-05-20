@@ -17,9 +17,7 @@ const UserBox = () => {
   }, [ user ] )
 
   return <>
-    <Navbar.Heading>{ `Hi, ${ loggedIn ?
-                              user :
-                              "Anonymous" }` }</Navbar.Heading>
+    <Navbar.Heading>{ `Hi, ${ user.name || "Anonymous" }` }</Navbar.Heading>
     { !loggedIn && <LoginBox/> }
   </>
 }
