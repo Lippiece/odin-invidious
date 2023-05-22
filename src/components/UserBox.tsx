@@ -10,7 +10,7 @@ const UserBox = () => {
   const [ loggedIn, setLoggedIn ] = useState( false )
 
   useEffect( () => {
-    user ? setLoggedIn( true ) : setLoggedIn( false )
+    user.name ? setLoggedIn( true ) : setLoggedIn( false )
   }, [ user ] )
   useEffect( () => {
     localStorage.setItem( "user", user )

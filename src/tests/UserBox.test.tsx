@@ -5,13 +5,9 @@ import UserBox            from "../components/UserBox"
 import * as signInModule  from "../logic/signIn"
 
 describe( "login", () => {
-  const spy = vi.spyOn( signInModule, "default" )
-                .mockImplementation( vi.fn() )
-  beforeEach( () => {
-    spy.mockRestore()
-    spy.mockReset()
-    spy.mockClear()
-  } )
+  const spy = vi
+    .spyOn( signInModule, "default" )
+    .mockImplementation( vi.fn() )
   it( 'should allow creating an account with valid credentials', async () => {
     render( <UserBox/> )
     const user = userEvent.setup()
