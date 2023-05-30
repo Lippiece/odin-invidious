@@ -40,3 +40,10 @@ export type Comments = {
     [ commenter: string ]: [ string, number ]
   }
 }
+
+export type UserData = {
+  subscriptions: string[],
+  comments: Comments,
+  views: string[],
+  time: number
+}

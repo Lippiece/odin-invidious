@@ -43,6 +43,7 @@ const Search = () => {
     <>
       <div
         className={ Classes.INPUT_GROUP }
+        id="search-input"
       >
         <Icon
           icon={ status === "fetching" ? "dot" : "search" }

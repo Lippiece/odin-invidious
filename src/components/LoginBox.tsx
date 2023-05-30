@@ -40,7 +40,7 @@ const LoginBox = () => {
       return handleError( result )( setError )
     }
     setStatus( "Remembering credentials" )
-    setUser( { name: result } )
+    setUser( { ...user, mail: result } )
     setStatus( "Signed in" )
   }
   const onInput  = event => {
@@ -78,6 +78,7 @@ const LoginBox = () => {
           >
             <Label htmlFor="mailInput">E-Mail</Label>
             <InputGroup
+              autoComplete="email"
               id="mailInput"
               onInput={ onInput }
               pattern="[^@]+@[^@]+\.[^@]+"
@@ -89,6 +90,7 @@ const LoginBox = () => {
               <Tag intent="warning">{ status.text }</Tag> }
             <Label htmlFor="passwordInput">Password</Label>
             <InputGroup
+              autoComplete="current-password"
               id="passwordInput"
               onInput={ onInput }
               type="password"

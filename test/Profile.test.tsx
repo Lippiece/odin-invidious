@@ -2,24 +2,31 @@ import { render, screen, waitFor } from "@testing-library/react"
 import userEvent                   from "@testing-library/user-event"
 import { atom }                    from "jotai"
 import { expect }                  from "vitest"
-import Profile                     from "../routes/Profile"
+import UserBox                     from "../src/components/UserBox"
+import Profile                     from "../src/routes/Profile"
 
-vi.mock( "../logic/fetchUserData.ts", () => ( {
+vi.mock( "../src/logic/fetchUserData.ts", () => ( {
     default: () => Promise.resolve( {
-                                      name         : "test",
-                                      subscriptions: [],
-                                      comments     : [],
-                                      views        : [],
+                                      subscriptions: [ "channel1", "channel2" ],
+                                      comments     : [ {
+                                        videoId: "123",
+                                        comment: "test",
+                                      }, {
+                                        videoId: "456",
+                                        comment: "test",
+                                      },
+                                      ],
+                                      views        : [ "123", "456" ],
                                       time         : 24900,
                                     } ),
   }
 ) )
-vi.mock( "../state/atoms.ts", async () => {
-  const actual = await vi.importActual( "../state/atoms.ts" )
+vi.mock( "../src/state/atoms.ts", async () => {
+  const actual = await vi.importActual( "../src/state/atoms.ts" )
   return {
     ...actual,
     userAtom: atom( {
-                      name: "testName",
+                      mail: "testName",
                     } ),
   }
 } )
@@ -29,7 +36,7 @@ describe( "Profile", () => {
     render( <Profile/> )
 
     await waitFor( () => {
-      expect( screen.getByText( /testName/ui ) )
+      expect( screen.getAllByText( /testName/ui )[ 0 ] )
       expect( screen.getByText( /Views/ui ) )
       expect( screen.getByText( /Time/ui ) )
       expect( screen.getByText( /Subscriptions/ui ) )
@@ -38,20 +45,23 @@ describe( "Profile", () => {
   } )
 
   it( 'should allow updating profile information', async () => {
-    vi.mock( "../logic/changeNameAtFirebase.ts", () => ( {
+    vi.mock( "../src/logic/changeNameAtFirebase.ts", () => ( {
         default: () => Promise.resolve( "newTestName" ),
       }
     ) )
-    render( <Profile/> )
+    render( <>
+      <UserBox/>
+      <Profile/>
+    </> )
     const user = userEvent.setup()
-    expect( screen.getByText( /testName/ui ) )
+    expect( screen.getByText( /Hi, testName/ui ) )
 
     await user.click( screen.getByText( /change name/ui ) )
-    await user.click( screen.getByText( /testName/ui ) )
-    await user.type( screen.getByText( /testName/ui ), "newTestName" )
-    await user.click( screen.getByText( /watching/ui ) )
+    const input = screen.getByPlaceholderText( /new name/ui )
+    await user.type( input, "newTestName" )
+    await user.click( screen.getByText( /change name/ui ) )
 
-    expect( screen.getByText( /newTestName/ui ) )
+    expect( screen.getByText( /Hi, newTestName/ui ) )
   } )
 
   it.skip( "should upload and display profile picture", async () => {

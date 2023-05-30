@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react"
 import userEvent          from "@testing-library/user-event"
 import { expect }         from "vitest"
-import UserBox            from "../components/UserBox"
-import * as signInModule  from "../logic/signIn"
+import UserBox            from "../src/components/UserBox"
+import * as signInModule  from "../src/logic/signIn"
 
 describe( "login", () => {
   const spy = vi

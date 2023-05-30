@@ -18,11 +18,20 @@ html, body, #root {
 main {
   display          : flex;
   flex-direction   : column;
+  justify-content  : center;
+  align-items      : center;
   flex-grow        : 1;
+  height           : 100%;
 
   background-image : url("../pattern/darkExa.webp");
 
-  * {
+  section {
+    display         : flex;
+    flex-direction  : column;
+    justify-content : center;
+  }
+
+  > * {
     margin : 0 2rem;
   }
 }
