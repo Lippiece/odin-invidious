@@ -16,10 +16,10 @@ const Home = () => {
         { loaderData?.length > 0
           ? (
             <ul>
-              { loaderData.map( ( { videoId } ) => (
-                <li key={ videoId }>
+              { loaderData.map( ( { id } ) => (
+                <li key={ id }>
                   <ReactPlayer
-                    url={ `https://youtube.com/watch?v=${ videoId }` }
+                    url={ `https://youtube.com/watch?v=${ id }` }
                     controls
                   />
                 </li>

@@ -9,7 +9,7 @@ export interface Video {
   "type": "video", // Constant
 
   "title": string,
-  "videoId": string,
+  "id": string,
 
   "author": string,
   "authorId": string,

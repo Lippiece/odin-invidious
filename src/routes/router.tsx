@@ -4,11 +4,12 @@ import {
   Route,
 } from "react-router-dom"
 
-import App       from "../App"
-import VideoPage from "../components/VideoPage"
-import Home      from "./Home"
-import Main      from "./Main"
-import Profile   from "./Profile"
+import App            from "../App"
+import VideoPage      from "../components/VideoPage"
+import homepageLoader from "../logic/homepageLoader"
+import Home           from "./Home"
+import Main           from "./Main"
+import Profile        from "./Profile"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,9 +18,10 @@ const router = createBrowserRouter(
       element={ <App/> }
     >
       <Route
-        loader={ () => fetch( `https://invidious.baczek.me/api/v1/popular` ) }
+        loader={ homepageLoader }
         path="/odin-invidious/"
         element={ <Home/> }
+        errorElement={ <h1>Error</h1> }
       >
         <Route
           path=":videoId"
