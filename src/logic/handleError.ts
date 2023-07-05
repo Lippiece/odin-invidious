@@ -1,4 +1,4 @@
-const handleError = ( error ) => ( callback ) => {
+const handleError = ( callback ) => ( error ) => {
   console.error( error )
   callback( error )
 }

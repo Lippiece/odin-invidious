@@ -1,12 +1,13 @@
-import { Intent, Toaster, ToastProps } from "@blueprintjs/core"
-import { initializeApp }               from "firebase/app"
-import { useAtom }                     from "jotai"
-import { Suspense, useEffect, useRef } from "react"
-import { Outlet }                      from "react-router-dom"
-import Footer                          from "./components/Footer"
-import Nav                             from "./components/Nav"
+import { Intent, OverlayToaster, Toaster, ToastProps } from "@blueprintjs/core"
+import { initializeApp }                               from "firebase/app"
+import { useAtom }                                     from "jotai"
+import { Suspense, useEffect, useRef }                 from "react"
+import { Outlet }                                      from "react-router-dom"
+import Footer
+                                                       from "./components/Footer"
+import Nav                                             from "./components/Nav"
 import "./css/App.scss"
-import { errorAtom }                   from "./state/atoms"
+import { errorAtom }                                   from "./state/atoms"
 
 const firebaseConfig = {
 // @ts-ignore
@@ -40,12 +41,12 @@ const App            = () => {
   return ( <>
       <Nav/>
       <main>
-        <Suspense fallback={ <div>Loading...</div> }>
+        <Suspense fallback = { <div>Loading...</div> }>
           <Outlet/>
         </Suspense>
       </main>
       <Footer/>
-      <Toaster ref={ toasterReference }/>
+      <OverlayToaster ref = { toasterReference }/>
     </>
   )
 }

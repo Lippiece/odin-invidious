@@ -1,44 +1,51 @@
+import { Text } from "@blueprintjs/core"
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-} from "react-router-dom"
+  useRouteError,
+}               from "react-router-dom"
 
-import App            from "../App"
-import VideoPage      from "../components/VideoPage"
-import homepageLoader from "../logic/homepageLoader"
-import Home           from "./Home"
-import Main           from "./Main"
-import Profile        from "./Profile"
+import App                    from "../App"
+import VideoPage              from "../components/VideoPage"
+import homepageTrendingLoader from "../logic/homepageTrendingLoader"
+import Home                   from "./Home"
+import Main                   from "./Main"
+import Profile                from "./Profile"
+
+const errorElement = () => {
+  const error = useRouteError()
+  return <Text>Error: { error.message }</Text>
+}
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
-      path="/odin-invidious/"
-      element={ <App/> }
+      path = "/odin-invidious/"
+      element = { <App/> }
     >
       <Route
-        loader={ homepageLoader }
-        path="/odin-invidious/"
-        element={ <Home/> }
-        errorElement={ <h1>Error</h1> }
+        loader = { homepageTrendingLoader }
+        path = "/odin-invidious/"
+        element = { <Home/> }
+        errorElement = { errorElement }
       >
         <Route
-          path=":videoId"
-          element={ <VideoPage/> }
+          path = ":videoId"
+          element = { <VideoPage/> }
         />
       </Route>
       <Route
-        path="/odin-invidious/profile"
-        element={ <Profile/> }
+        path = "/odin-invidious/profile"
+        element = { <Profile/> }
       />
       <Route
-        path="/odin-invidious/main"
-        element={ <Main/> }
+        path = "/odin-invidious/main"
+        element = { <Main/> }
       >
         <Route
-          path=":videoId"
-          element={ <VideoPage/> }
+          path = ":videoId"
+          element = { <VideoPage/> }
         />
       </Route>
     </Route>,

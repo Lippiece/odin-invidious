@@ -1,9 +1,4 @@
-interface ThumbnailObject {
-  "quality": string,
-  "url": string,
-  "width": number, // Integer
-  "height": number // Integer
-}
+import { ThumbnailObject } from "./ThumbnailObject"
 
 export interface Video {
   "type": "video", // Constant
@@ -33,10 +28,4 @@ export interface Video {
   "liveNow": boolean,
   "premium": boolean,
   "isUpcoming": boolean
-}
-
-export type Comments = {
-  [ videoId: string ]: {
-    [ commenter: string ]: [ string, number ]
-  }
 }

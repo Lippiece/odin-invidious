@@ -4,23 +4,23 @@
 @import "@blueprintjs/core/lib/scss/variables.scss";
 
 #root {
-  background     : $black;
-  color          : #f6f7f9;
   display        : flex;
   flex-direction : column;
+  color          : #f6f7f9;
+  background     : $black;
 }
 
 html, body, #root {
-  min-height : 100vh;
   min-width  : 100%;
+  min-height : 100vh;
 }
 
 main {
   display          : flex;
+  align-items      : center;
   flex-direction   : column;
   flex-grow        : 1;
   justify-content  : center;
-  align-items      : center;
 
   background-image : url("../pattern/darkExa.webp");
 
@@ -29,6 +29,6 @@ main {
   }
 }
 
-.bp4-non-ideal-state {
+.bp5-non-ideal-state {
   width : auto
 }
