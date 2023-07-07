@@ -14,8 +14,6 @@ const Home = () => {
 
   const loaderData = useLoaderData() as Either<Error, Promise<TrendingVideos>>
 
-  console.debug( "loaderData", loaderData )
-
   useEffect( () => {
     loaderData
       .bimap( handleError( setError ),

@@ -1,5 +1,4 @@
-import { atom } from "jotai"
-
+import { atom }  from "jotai"
 import { Video } from "../@types/Video"
 
 const storageUser     = localStorage.getItem( "user" )

@@ -3,7 +3,7 @@ import { useAtom }                           from "jotai"
 import { useEffect, useState }               from "react"
 import ReactPlayer                           from "react-player/youtube"
 import { useLocation }                       from "react-router-dom"
-import { Comments }                          from "../@types/types"
+import { Comments }                          from "../@types/Comments"
 import addCommentForVideo                    from "../logic/addCommentsForVideo"
 import getComments                           from "../logic/getComments"
 import handleError                           from "../logic/handleError"
@@ -25,14 +25,14 @@ const VideoPage = () => {
     const fetchComments = () => {
       getComments( videoId )
         .then( setComments )
-        .catch( error => handleError( error )( setError ) )
+        .catch( error => handleError( setError )( error ) )
     }
 
     const handleAddComment = () => {
       const newComment = { [ user || "Anonymous" ]: [ message, Date.now() ] }
       addCommentForVideo( videoId, newComment )
         .then( fetchComments )
-        .catch( error => handleError( error )( setError ) )
+        .catch( handleError( setError ) )
       setMessage( "" )
     }
 
@@ -47,7 +47,7 @@ const VideoPage = () => {
                    .map( ( key, index ) =>
                            Object.entries( comments[ key ] || {} )
                                  .map( ( [ commenter, [ comment, timestamp ] ] ) =>
-                                         <li key={ index }>
+                                         <li key = { index }>
                                            <H3>{ commenter }</H3>
                                            <H4>{ prettifyTimestamp(
                                              timestamp ) }</H4>
@@ -56,18 +56,18 @@ const VideoPage = () => {
                                  ) ) }
       </ul>
       <input
-        className={ Classes.INPUT }
-        type="text"
-        value={ message }
-        placeholder="Add a comment..."
-        onChange={ ( event ) => setMessage( event.target.value ) }/>
+        className = { Classes.INPUT }
+        type = "text"
+        value = { message }
+        placeholder = "Add a comment..."
+        onChange = { ( event ) => setMessage( event.target.value ) }/>
       <Button
-        text="Add Comment"
-        onClick={ handleAddComment }/>
+        text = "Add Comment"
+        onClick = { handleAddComment }/>
     </>
   }
   return <>
-    <ReactPlayer url={ `https://www.youtube.com/watch?v=${ videoId }` }/>
+    <ReactPlayer url = { `https://www.youtube.com/watch?v=${ videoId }` }/>
     <Comments/>
   </>
 }

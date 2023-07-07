@@ -8,8 +8,8 @@ import {
 }                                           from "@blueprintjs/core"
 import { useAtom }                          from "jotai"
 import { useCallback, useEffect, useState } from "react"
+import signIn                               from "../logic/API/signIn"
 import handleError                          from "../logic/handleError"
-import signIn                               from "../logic/signIn"
 import { userAtom }                         from "../state/atoms"
 
 const LoginBox = () => {
@@ -55,33 +55,33 @@ const LoginBox = () => {
   return (
     <>
       <Button
-        onClick={ handleButtonClick }
-        text="Sign in"
-        className={ Classes.MINIMAL }/>
-      <Dialog isOpen={ isOpen } onClose={ handleClose }>
+        onClick = { handleButtonClick }
+        text = "Sign in"
+        className = { Classes.MINIMAL }/>
+      <Dialog isOpen = { isOpen } onClose = { handleClose }>
         <DialogBody>
           <form
-            onSubmit={ onSubmit }
+            onSubmit = { onSubmit }
           >
             <p>{ status }</p>
-            <Label htmlFor="mailInput">E-Mail</Label>
+            <Label htmlFor = "mailInput">E-Mail</Label>
             <InputGroup
-              id="mailInput"
-              onInput={ onInput }
-              pattern="[^@]+@[^@]+\.[^@]+"
-              minLength={ 10 }
+              id = "mailInput"
+              onInput = { onInput }
+              pattern = "[^@]+@[^@]+\.[^@]+"
+              minLength = { 10 }
               required
-              placeholder="mail@domain.com"
+              placeholder = "mail@domain.com"
             />
-            <Label htmlFor="passwordInput">Password</Label>
+            <Label htmlFor = "passwordInput">Password</Label>
             <InputGroup
-              id="passwordInput"
-              onInput={ onInput }
-              type="password"
-              minLength={ 6 }
+              id = "passwordInput"
+              onInput = { onInput }
+              type = "password"
+              minLength = { 6 }
               required
             />
-            <Button type="submit">Login</Button>
+            <Button type = "submit">Login</Button>
           </form>
         </DialogBody>
       </Dialog>
