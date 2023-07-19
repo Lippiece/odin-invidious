@@ -1,4 +1,4 @@
-export interface ThumbnailObject {
+export default interface ThumbnailObject {
   "quality": string,
   "url": string,
   "width": number, // Integer

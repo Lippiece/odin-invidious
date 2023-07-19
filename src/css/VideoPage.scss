@@ -1,0 +1,11 @@
+.video {
+  position   : fixed;
+  // overflow   : auto;
+  width      : 75%;
+  max-height : 90vh;
+
+  .comments {
+    overflow : auto;
+    height   : 30vh;
+  }
+}

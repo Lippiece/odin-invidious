@@ -4,8 +4,9 @@ import { useAtom }                                     from "jotai"
 import { Suspense, useEffect, useRef }                 from "react"
 import { Outlet }                                      from "react-router-dom"
 import Footer
-                                                       from "./components/Footer"
-import Nav                                             from "./components/Nav"
+                                                       from "./components/Layout/Footer"
+import Nav
+                                                       from "./components/Layout/Nav"
 import "./css/App.scss"
 import { errorAtom }                                   from "./state/atoms"
 

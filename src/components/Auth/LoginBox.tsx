@@ -8,9 +8,9 @@ import {
 }                                           from "@blueprintjs/core"
 import { useAtom }                          from "jotai"
 import { useCallback, useEffect, useState } from "react"
-import signIn                               from "../logic/API/signIn"
-import handleError                          from "../logic/handleError"
-import { userAtom }                         from "../state/atoms"
+import signIn                               from "../../logic/API/signIn"
+import handleError                          from "../../logic/handleError"
+import { userAtom }                         from "../../state/atoms"
 
 const LoginBox = () => {
   const [ user, setUser ] = useAtom( userAtom )

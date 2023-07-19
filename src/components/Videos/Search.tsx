@@ -2,11 +2,11 @@ import { InputGroup }            from "@blueprintjs/core"
 import { useAtom }               from "jotai"
 import { useState }              from "react"
 import { useNavigate }           from "react-router-dom"
-import { Instance }              from "../@types/Instance"
-import { Video }                 from "../@types/Video"
-import fetchInstances            from "../logic/API/fetchInstances"
-import handleError               from "../logic/handleError"
-import { errorAtom, searchAtom } from "../state/atoms"
+import Instance                  from "../../@types/Instance"
+import Video                     from "../../@types/Video"
+import fetchInstances            from "../../logic/API/fetchInstances"
+import handleError               from "../../logic/handleError"
+import { errorAtom, searchAtom } from "../../state/atoms"
 
 const Search = () => {
   const [ , setError ]         = useAtom( errorAtom )

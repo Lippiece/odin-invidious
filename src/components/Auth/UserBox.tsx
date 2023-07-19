@@ -2,7 +2,7 @@ import { Navbar }              from "@blueprintjs/core"
 import { useAtom }             from "jotai"
 import { useEffect, useState } from "react"
 
-import { userAtom } from "../state/atoms"
+import { userAtom } from "../../state/atoms"
 import LoginBox     from "./LoginBox"
 
 const UserBox = () => {

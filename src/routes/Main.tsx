@@ -1,52 +1,40 @@
-import { NonIdealState, Text } from "@blueprintjs/core"
-import { useAtom }             from "jotai"
-import { Suspense }            from "react"
-import { Link, Outlet }        from "react-router-dom"
-import { searchAtom }          from "../state/atoms"
+import { NonIdealState, Tab, Tabs } from "@blueprintjs/core"
+import { useAtom }                  from "jotai"
+import { Outlet }                   from "react-router-dom"
+import VideoPage                    from "../components/Videos/VideoPage"
+import VideoPreview                 from "../components/Videos/VideoPreview"
+import { searchAtom }               from "../state/atoms"
 
-const convertUrlToId = ( url: string ) => url
-  .substring( url.lastIndexOf( "=" ) + 1 )
+const urlToId = ( url: string ) => url.substring( url.lastIndexOf( "=" ) + 1 )
 
 const Main = () => {
   const [ searchResults ] = useAtom( searchAtom )
-  console.debug( searchResults )
   return ( <>
-      <Suspense fallback = { <div>Loading...</div> }>
-        <Outlet/>
-      </Suspense>
+      <Outlet/>
       { searchResults?.length > 0
-        ? (
-          <ul>
-            { searchResults.map( ( {
-                                     url,
-                                     title,
-                                     uploaderName,
-                                     uploaded,
-                                     thumbnail,
-                                     uploaderAvatar,
-                                   } ) => (
-              <li key = { convertUrlToId( url ) }>
-                <div>
-                  <Link to = { convertUrlToId( url ) }>
-                    <img src = { thumbnail } alt = "Video thumbnail"/>
-                  </Link>
-                  <img src = { uploaderAvatar }
-                       alt = "Uploader avatar"
-                       style = { {
-                         position: "absolute",
-                         left    : "50%",
-                       } }/>
-                </div>
-                <div>
-                  <Link to = { convertUrlToId( url ) }>{ title }</Link>
-                  <span>
-                  <Text>by { uploaderName } on { new Date( uploaded ).toLocaleDateString() }</Text>
-                  </span>
-                </div>
-              </li>
-            ) ) }
-          </ul>
-        )
+        ? <Tabs vertical renderActiveTabPanelOnly>
+          { searchResults
+            .map( ( result, index ) =>
+                    <Tab
+                      key = { index }
+                      id = { index }
+                      panel = {
+                        <VideoPage videoId = { urlToId( result.url ) }/> }
+                    >
+                      <VideoPreview video = { result }/>
+                    </Tab>,
+            )
+          }
+        </Tabs>
+        // (
+        //   <ul>
+        //     { searchResults.map( ( result ) => (
+        //       <li key = { result.url }>
+        //         <VideoPreview video = { result }/>
+        //       </li>
+        //     ) ) }
+        //   </ul>
+        // )
         : <NonIdealState
           icon = "info-sign"
           title = "No results or the search has failed."/>
@@ -54,5 +42,4 @@ const Main = () => {
     </>
   )
 }
-
 export default Main

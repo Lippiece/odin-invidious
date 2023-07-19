@@ -1,4 +1,4 @@
-export type TrendingVideos = {
+type TrendingVideos = {
   duration: number,
   thumbnail: string,
   title: string,
@@ -9,3 +9,5 @@ export type TrendingVideos = {
   url: string,
   views: number,
 }[]
+
+export default TrendingVideos

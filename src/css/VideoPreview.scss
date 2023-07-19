@@ -1,0 +1,39 @@
+.video-preview {
+  img {
+    width : 20rem;
+  }
+
+  .thumbnail img {
+    width      : 150px;
+    max-height : 100%;
+    object-fit : cover;
+  }
+
+  .info {
+    margin-left : 2rem;
+
+    > div {
+      font-weight : bold;
+      max-width   : 18rem;
+      text-wrap   : wrap;
+    }
+  }
+
+  .uploader {
+    display       : flex;
+    align-items   : center;
+    margin-bottom : 1rem;
+  }
+
+  .uploader .avatar {
+    width         : 1rem;
+    height        : 1rem;
+    margin-right  : 1rem;
+    border-radius : 50%;
+  }
+
+  .uploaded {
+    font-size : 14px;
+    color     : #999;
+  }
+}

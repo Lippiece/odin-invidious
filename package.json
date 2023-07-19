@@ -12,17 +12,17 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies"   : {
-    "@blueprintjs/core"          : "^5.0.1",
-    "@testing-library/user-event": "latest",
-    "firebase"                   : "latest",
-    "jotai"                      : "latest",
-    "purify-ts"                  : "latest",
-    "react"                      : "latest",
-    "react-dom"                  : "latest",
-    "react-player"               : "latest",
-    "react-router-dom"           : "latest"
+    "@blueprintjs/core": "latest",
+    "firebase"         : "latest",
+    "jotai"            : "latest",
+    "purify-ts"        : "latest",
+    "react"            : "latest",
+    "react-dom"        : "latest",
+    "react-player"     : "latest",
+    "react-router-dom" : "latest"
   },
   "devDependencies": {
+    "@testing-library/user-event": "latest",
     "@testing-library/react"     : "latest",
     "@types/react"               : "latest",
     "@types/react-dom"           : "latest",
@@ -31,7 +31,7 @@
     "ghspa"                      : "latest",
     "jsdom"                      : "latest",
     "sass"                       : "latest",
-    "vite"                       : "^4.3.9",
+    "vite"                       : "latest",
     "vite-plugin-compression"    : "latest",
     "vite-plugin-image-optimizer": "latest",
     "vitest"                     : "latest"

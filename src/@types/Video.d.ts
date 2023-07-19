@@ -1,4 +1,4 @@
-export interface Video {
+export default interface Video {
   url: string;
   type: "stream";
   title: string;

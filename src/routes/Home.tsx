@@ -4,8 +4,7 @@ import { Either }                        from "purify-ts"
 import { Suspense, useEffect, useState } from "react"
 import ReactPlayer                       from "react-player/youtube"
 import { Outlet, useLoaderData }         from "react-router-dom"
-import { TrendingVideos }                from "../@types/trendingVideos"
-import handleError                       from "../logic/handleError"
+import TrendingVideos                    from "../@types/TrendingVideos"
 import { errorAtom }                     from "../state/atoms"
 
 const Home = () => {
@@ -13,12 +12,17 @@ const Home = () => {
   const [ videos, setVideos ] = useState<TrendingVideos>( [] )
 
   const loaderData = useLoaderData() as Either<Error, Promise<TrendingVideos>>
-
+  console.debug( "loaderData", loaderData )
+  console.debug( "---------------------" )
   useEffect( () => {
     loaderData
-      .bimap( handleError( setError ),
-              async trendingVideos => setVideos( await trendingVideos ) )
-
+      .bimap( setError,
+              async videos => ( await videos ).bimap(
+                setError,
+                setVideos,
+              ),
+      )
+    console.debug( "videos", videos )
   }, [ loaderData ] )
 
   return (
@@ -35,13 +39,15 @@ const Home = () => {
                 <ReactPlayer
                   url = { `https://youtube.com${ url }` }
                   controls
+                  light
                 />
               </li>
             ) ) }
           </ul> )
           : <NonIdealState
             icon = "search"
-            title = "No results or the search failed."/>
+            title = "No results or the search failed."
+          />
         }
       </Suspense>
     </>

@@ -1,4 +1,4 @@
-export type Instance = {
+export default interface Instance {
   name: string;
   api_url: string;
   locations: string;

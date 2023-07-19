@@ -5,9 +5,9 @@ import {
 } from "firebase/auth"
 
 const signIn = async ( email: string, password: string ) => {
-  const auth = getAuth( window.firebase )
 
   try {
+    const auth  = getAuth( window.firebase )
     const login = await signInWithEmailAndPassword( auth, email, password )
     return auth.currentUser.email
   } catch ( error ) {

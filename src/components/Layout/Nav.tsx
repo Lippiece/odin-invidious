@@ -1,27 +1,27 @@
 import { Button, Classes, Navbar } from "@blueprintjs/core"
 import { Link }                    from "react-router-dom"
-import "../css/Nav.css"
-import Search                      from "./Search"
+import "../../css/Nav.css"
 
-import UserBox from "./UserBox"
+import UserBox from "../Auth/UserBox"
+import Search  from "../Videos/Search"
 
 const Nav = () => {
   return (
-    <Navbar className="nav">
+    <Navbar className = "nav">
       <Navbar.Group>
-        <Link to="/odin-invidious/">
+        <Link to = "/odin-invidious/">
           <Navbar.Heading>Logos</Navbar.Heading>
         </Link>
         <Search/>
       </Navbar.Group>
       <Navbar.Group>
-        <Link to="/odin-invidious/main">
+        <Link to = "/odin-invidious/main">
           <Button
-            text="Main" large className={ Classes.MINIMAL }/>
+            text = "Main" large className = { Classes.MINIMAL }/>
         </Link>
-        <Link to="/odin-invidious/profile">
+        <Link to = "/odin-invidious/profile">
           <Button
-            text="Profile" large className={ Classes.MINIMAL }/>
+            text = "Profile" large className = { Classes.MINIMAL }/>
         </Link>
         <Navbar.Divider/>
       </Navbar.Group>

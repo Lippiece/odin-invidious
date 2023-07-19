@@ -6,7 +6,7 @@
 #root {
   display        : flex;
   flex-direction : column;
-  color          : #f6f7f9;
+  color          : $white;
   background     : $black;
 }
 
@@ -17,28 +17,38 @@ html, body, #root {
 
 main {
   display          : flex;
-  align-items      : center;
+  // align-items      : center;
   flex-direction   : column;
   flex-grow        : 1;
   justify-content  : center;
-  padding          : 2rem 0;
+  // padding          : 2rem 0;
   background-image : url("../pattern/darkExa.webp");
+  gap              : 2rem;
 
-  * {
-    margin : 0 2rem;
-  }
+  // * {
+  //   margin : 0 2rem;
+  // }
 }
 
-.bp5-non-ideal-state {
-  width : auto
-}
+//
+// .bp5-non-ideal-state {
+//   width : auto
+// }
 
-ul {
-  display        : flex;
-  flex-direction : column;
-  gap            : 1rem;
-}
+// ul {
+//   display        : flex;
+//   flex-direction : column;
+//   gap            : 1rem;
+// }
 
 li {
   list-style : none;
+}
+
+.bp5-tab-panel {
+  width : 100%;
+}
+
+.bp5-tab-list {
+  width : fit-content;
 }
