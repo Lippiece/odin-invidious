@@ -14,13 +14,21 @@ export default defineConfig( {
                                base   : "/odin-invidious/",
                                build  : {
                                  rollupOptions: {
-                                   input: {
+                                   input : {
                                      main    : resolve( __dirname,
                                                         "index.html",
                                      ),
                                      notFound: resolve( __dirname, "404.html" ),
                                    },
+                                   output: {
+                                     manualChunks: {
+                                       react      : [ "react", "react-dom" ],
+                                       blueprintjs: [ "@blueprintjs/core",
+                                                      "@blueprintjs/icons" ],
+                                     },
+                                   },
                                  },
+                                 target       : "esnext",
                                },
                                define : {
                                  "process.env": {},
